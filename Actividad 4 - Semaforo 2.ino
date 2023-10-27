@@ -30,25 +30,25 @@ void loop()
   if (digitalRead(11) == HIGH && digitalRead(10)== LOW){ 
     
   digitalWrite(led, HIGH);
-  delay (5000);
+  delay (analogRead(A0));
   digitalWrite(led, LOW);
     
   contador = led + contador++ - 6;
   Serial.print(contador);
-    delay (500);
+    delay (analogRead(A0));
     
   digitalWrite(led, HIGH);
   digitalWrite(led1, HIGH);
-  delay (1000);
+  delay (analogRead(A0));
   digitalWrite(led, LOW);
   digitalWrite(led1, LOW);
     
   digitalWrite(led2, HIGH);
-  delay (3000);
+  delay (analogRead(A0));
   digitalWrite(led2, LOW);
     
   digitalWrite(led1, HIGH);
-  delay (1000);
+  delay (analogRead(A0));
    digitalWrite(led1, LOW);
  } 
   

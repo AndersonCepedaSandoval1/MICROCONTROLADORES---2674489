@@ -50,6 +50,9 @@ void loop()
   digitalWrite(led1, HIGH);
   delay (analogRead(A0));
    digitalWrite(led1, LOW);
+    
+    Serial.print(analogRead(A0));
+   delay (500);
  } 
   
   if (digitalRead(11)== LOW && digitalRead(10)== HIGH){ 

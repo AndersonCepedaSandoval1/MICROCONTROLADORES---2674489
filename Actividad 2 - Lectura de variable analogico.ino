@@ -1,6 +1,6 @@
 // SEGUNDO PUNTO
 // Anderson cepeda Sandoval y Juan Sebastian Guanumen Romero
-// 2674489
+// 2674489 - Actividad 2
 
 void setup()
 {

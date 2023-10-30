@@ -34,7 +34,7 @@ void loop()
   if (digitalRead(11) == HIGH && digitalRead(10)== LOW){ 
     
      digitalWrite(led, HIGH);
-    delay (5000/sensor);
+    delay (sensor*(5000/1023));
     digitalWrite(led, LOW);
 
 	Serial.print("El led a paso por HIGH: ");
@@ -50,29 +50,30 @@ void loop()
     
     digitalWrite(led, HIGH);
     digitalWrite(led1, HIGH);
-    delay (1000/sensor);
+    delay (sensor*(1000/1023));
     digitalWrite(led, LOW);
     digitalWrite(led1, LOW);
 
     digitalWrite(led2, HIGH);
-    delay (3000/sensor);
+    delay (sensor*(3000/1023));
     digitalWrite(led2, LOW);
 
     digitalWrite(led1, HIGH);
-    delay (1000/sensor);
+    delay (sensor*(1000/1023));
      digitalWrite(led1, LOW);
     } 
 
   if (digitalRead(11)== LOW && digitalRead(10)== HIGH){ 
    digitalWrite(led1, HIGH);
-   delay (500/sensor);
+   delay (sensor*(1000/1023));
    digitalWrite(led1, LOW);
-   delay (500/sensor);
+   delay (sensor*(1000/1023));
     
    Serial.print("El valor del potencimetro es = "); 
    Serial.println(sensor);
-   delay (500/sensor);
-
+   delay (1000);
+  Serial.print(sensor*(500/1023));
+    delay(500);
   }
   
   if (digitalRead(11)== HIGH && digitalRead(13)== HIGH){ 

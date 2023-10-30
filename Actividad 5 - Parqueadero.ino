@@ -1,86 +1,79 @@
-// Microcontroladores - 2674489
-// Actividad 4
-// Anderson Cepeda Sandoval y Juan Sebastian Guanumen
+//Anderson Cepeda y Juan Sebastian Guanumen
+//Microtrontroladores
+//Actividad 5
 
-long valor;
-int var1 = 11;   
-int var2 = 10;
-int var4 = A0;
+int var1 = 4;   
+int var2 = 3;
+int ledR = 7;  
+int ledV = 5;  
 
-int led = 7;    
-int led1 = 6;  
-int led2 = 5;  
+int disponible = 0;
+float dinero = 0;
 
-int contador = 0;
-int sensor;
+void salida () {
+if(digitalRead(var1)){  
+   disponible+=1;  
+   dinero+=5000; 
+ } 
+} 
 
-void setup() {
-  pinMode(var1, INPUT);     
-  pinMode(var2, INPUT);
-  pinMode(var4, INPUT);
-  pinMode(led, OUTPUT);   
-  pinMode (led1, OUTPUT);
-  pinMode (led2, OUTPUT);
-  
-  Serial.begin(9600);
-  
+void entrada () {
+if(digitalRead(var2)){  
+  if(disponible>=1 && disponible <=10)
+   disponible-=1;  
+  }
 }
+  void setup()
+  {
+    pinMode(var1,INPUT);
+    pinMode(var2,INPUT);
+    pinMode(ledV,OUTPUT);
+    pinMode(ledR,OUTPUT);
+    
+    Serial.begin(9600);
+  }
 
-void loop()
-{ 
+  void loop()
+  {
+    
+   
+  if (digitalRead(var1)){  
+     
+     salida();
+  }
+   
+    
+ if(disponible >10){
+  		disponible+=-1;
+   		dinero-=5000;
+	}
+    
+  if (digitalRead(var2)){  
+     
+     entrada();
+  }
  
-  sensor = analogRead(A0);
+     
+  if(disponible >0 && disponible <= 10)
+  { 
+    digitalWrite(ledV,HIGH);
+    digitalWrite(ledR,LOW);
     
-  if (digitalRead(11) == HIGH && digitalRead(10)== LOW){ 
-    
-     digitalWrite(led, HIGH);
-    delay (sensor*(5000/1023));
-    digitalWrite(led, LOW);
-
-	Serial.print("El led a paso por HIGH: ");
-  
-  contador = led + contador++ - 6;
-  Serial.print(contador);
-    delay (sensor);
-  
- Serial.println("  ");
-  
-  Serial.print("El valor del potencimetro es = ");
-  Serial.println(sensor);
-    
-    digitalWrite(led, HIGH);
-    digitalWrite(led1, HIGH);
-    delay (sensor*(1000/1023));
-    digitalWrite(led, LOW);
-    digitalWrite(led1, LOW);
-
-    digitalWrite(led2, HIGH);
-    delay (sensor*(3000/1023));
-    digitalWrite(led2, LOW);
-
-    digitalWrite(led1, HIGH);
-    delay (sensor*(1000/1023));
-     digitalWrite(led1, LOW);
-    } 
-
-  if (digitalRead(11)== LOW && digitalRead(10)== HIGH){ 
-   digitalWrite(led1, HIGH);
-   delay (sensor*(1000/1023));
-   digitalWrite(led1, LOW);
-   delay (sensor*(1000/1023));
-    
-   Serial.print("El valor del potencimetro es = "); 
-   Serial.println(sensor);
-   delay (1000);
-  Serial.print(sensor*(500/1023));
-    delay(500);
+  } else{
+    digitalWrite(ledR,HIGH);
+     digitalWrite(ledV,LOW);
   }
-  
-  if (digitalRead(11)== HIGH && digitalRead(13)== HIGH){ 
-
-    digitalWrite(led, LOW);
-    digitalWrite(led1, LOW);
-    digitalWrite(led2, LOW);
+ 
+  Serial.print("Cupos reservados: ");
+  Serial.println(10 - disponible);  
+  Serial.print("Cupos disponibles: ");
+  Serial.println(disponible);
+  Serial.print("Dinero recibido: ");
+  Serial.println(dinero);
+  delay(2000);
+    
+    
   }
-  
- }
+ 
+
+ 

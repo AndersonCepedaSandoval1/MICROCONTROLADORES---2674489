@@ -14,20 +14,16 @@ void loop(){
     digitalWrite(D4,LOW);
     delay(500);
     digitalWrite(D4,HIGH);
-    delay(500);
     digitalWrite(D7,HIGH);
     delay(500);
     digitalWrite(D7,LOW);
-    delay(500);
   } else { 
     digitalWrite(D4,LOW);
     delay(500);
     digitalWrite(D4,HIGH);
-    delay(500);
     digitalWrite(D7,HIGH);
     delay(500);
     digitalWrite(D7,LOW);
-    delay(500);
   }
   
 }

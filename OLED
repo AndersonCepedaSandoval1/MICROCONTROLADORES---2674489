@@ -1,0 +1,74 @@
+#include <Adafruit_GFX.h>
+#include <Adafruit_GrayOLED.h>
+#include <Adafruit_SPITFT.h>
+#include <Adafruit_SPITFT_Macros.h>
+#include <gfxfont.h>
+
+#include <Adafruit_SSD1306.h>
+#include <Wire.h>
+#include <Bonezegei_DHT11.h>
+
+#define DHTPIN D4
+
+#define DHTTYPE DHT11
+
+#define ANCHO 128
+#define ALTO 64
+#define OLED_RESET 0
+#define i2c_dir 0x3C
+
+Adafruit_SSD1306 oled(ANCHO,ALTO,&Wire,OLED_RESET);
+Bonezegei_DHT11 dht(D4);
+
+float h;
+int t; 
+
+void setup() {
+  Serial.begin(115200);
+  dht.begin();
+  pinMode(D4, OUTPUT);
+
+  Wire.begin();
+  Serial.begin(115200);
+  oled.begin(SSD1306_SWITCHCAPVCC, i2c_dir);
+  oled.clearDisplay();
+  oled.display();
+  delay(100);
+}
+
+void loop() {
+
+   if (isnan(h) || isnan(t)) {
+    Serial.println("Error obtenido de los datos del sensor");
+    return;
+   }
+
+   
+  if (dht.getData()) { 
+      Serial.printf("Humedad: ");
+  Serial.print(t);
+  Serial.print(" %\t");
+  Serial.print("Temperatura");
+  Serial.print(h);
+  Serial.println(" *c ");
+  }
+   
+    h = dht.getTemperature();   
+    t = dht.getHumidity();  
+
+
+  delay(500);  
+  oled.clearDisplay();
+  oled.setTextSize(1);
+  oled.setTextColor(WHITE);
+  oled.setCursor(35, 30);
+  oled.print("T: ");
+  oled.print(t);
+  oled.setCursor(35, 40);
+  oled.print("hum= ");
+  oled.print(h);
+  oled.display();
+  delay(500);
+  
+
+}
